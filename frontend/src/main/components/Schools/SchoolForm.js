@@ -73,7 +73,22 @@ function SchoolForm({ initialContents, submitAction, buttonLabel = "Create" }) {
                 </Form.Control.Feedback>
             </Form.Group>
 
-
+            <Form.Group className="mb-3" >
+                <Form.Label htmlFor="description">Description</Form.Label>
+                <Form.Control
+                    data-testid={testIdPrefix + "-description"}
+                    id="description"
+                    type="text"
+                    isInvalid={Boolean(errors.description)}
+                    {...register("description", {
+                        required: "Description is required."
+                    })}
+                />
+                <Form.Control.Feedback type="invalid">
+                    {errors.description?.message}
+                </Form.Control.Feedback>
+            </Form.Group>
+            
             <Button
                 type="submit"
                 data-testid={testIdPrefix + "-submit"}

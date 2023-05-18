@@ -15,8 +15,8 @@ jest.mock('react-router-dom', () => ({
 describe("SchoolTable tests", () => {
   const queryClient = new QueryClient();
 
-  const expectedHeaders = ["id", "Name", "Rank"];
-  const expectedFields = ["id", "name", "rank"];
+  const expectedHeaders = ["id", "Name", "Rank", "Description"];
+  const expectedFields = ["id", "name", "rank", "description"];
   const testId = "SchoolTable";
 
   test("showCell function works properly", () => {
@@ -141,7 +141,7 @@ describe("SchoolTable tests", () => {
     // assert - check that the console.log was called with the expected message
     expect(console.log).toHaveBeenCalled();
     const message = console.log.mock.calls[0][0];
-    const expectedMessage = `editCallback: {"id":2,"name":"USC","rank":"25"})`;
+    const expectedMessage = `editCallback: {"id":2,"name":"USC","rank":"25","description":"A private research university in Los Angeles, the oldest private research university."})`;
     expect(message).toMatch(expectedMessage);
     restoreConsole();
   });
@@ -175,7 +175,7 @@ describe("SchoolTable tests", () => {
     // assert - check that the console.log was called with the expected message
     expect(console.log).toHaveBeenCalled();
     const message = console.log.mock.calls[0][0];
-    const expectedMessage = `detailsCallback: {"id":2,"name":"USC","rank":"25"})`;
+    const expectedMessage = `detailsCallback: {"id":2,"name":"USC","rank":"25","description":"A private research university in Los Angeles, the oldest private research university."})`;
     expect(message).toMatch(expectedMessage);
     restoreConsole();
   });
@@ -206,7 +206,7 @@ describe("SchoolTable tests", () => {
      // assert - check that the console.log was called with the expected message
      await(waitFor(() => expect(console.log).toHaveBeenCalled()));
      const message = console.log.mock.calls[0][0];
-     const expectedMessage = `deleteCallback: {"id":2,"name":"USC","rank":"25"})`;
+     const expectedMessage = `deleteCallback: {"id":2,"name":"USC","rank":"25","description":"A private research university in Los Angeles, the oldest private research university."})`;
      expect(message).toMatch(expectedMessage);
      restoreConsole();
   });
