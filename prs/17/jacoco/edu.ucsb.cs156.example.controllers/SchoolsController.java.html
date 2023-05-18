@@ -30,7 +30,7 @@ import javax.validation.Valid;
     @Autowired
     SchoolRepository schoolRepository;
 
-    @ApiOperation(value = &quot;List all laptops&quot;)
+    @ApiOperation(value = &quot;List all schools&quot;)
     @PreAuthorize(&quot;hasRole('ROLE_USER')&quot;)
     @GetMapping(&quot;/all&quot;)
     public Iterable&lt;School&gt; allLaptops() {
