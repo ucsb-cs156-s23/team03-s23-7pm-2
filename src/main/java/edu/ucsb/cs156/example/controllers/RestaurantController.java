@@ -31,7 +31,7 @@ public class RestaurantController extends ApiController {
     @Autowired
     RestaurantRepository RestaurantRepository;
 
-    @ApiOperation(value = "List all ucsb dining restaurant")
+    @ApiOperation(value = "List all dining restaurant")
     @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("/all")
     public Iterable<Restaurant> allrestaurants() {
