@@ -31,7 +31,7 @@ import javax.validation.Valid;
     @Autowired
     RestaurantRepository RestaurantRepository;
 
-    @ApiOperation(value = &quot;List all ucsb dining restaurant&quot;)
+    @ApiOperation(value = &quot;List all dining restaurant&quot;)
     @PreAuthorize(&quot;hasRole('ROLE_USER')&quot;)
     @GetMapping(&quot;/all&quot;)
     public Iterable&lt;Restaurant&gt; allrestaurants() {
