@@ -4,7 +4,10 @@ import { useParams } from "react-router-dom";
 import { schoolUtils }  from 'main/utils/schoolUtils';
 import SchoolForm from 'main/components/Schools/SchoolForm';
 import { useNavigate } from 'react-router-dom'
-
+import { apiCurrentUserFixtures }  from "fixtures/currentUserFixtures";
+import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
+import axios from "axios";
+import AxiosMockAdapter from "axios-mock-adapter";
 
 export default function SchoolEditPage() {
     let { id } = useParams();

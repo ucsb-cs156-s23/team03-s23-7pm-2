@@ -4,7 +4,10 @@ import BasicLayout from "main/layouts/BasicLayout/BasicLayout";
 import SchoolTable from 'main/components/Schools/SchoolTable';
 import { schoolUtils } from 'main/utils/schoolUtils';
 import { useNavigate, Link } from 'react-router-dom';
-
+import { apiCurrentUserFixtures }  from "fixtures/currentUserFixtures";
+import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
+import axios from "axios";
+import AxiosMockAdapter from "axios-mock-adapter";
 export default function SchoolIndexPage() {
 
     const navigate = useNavigate();
