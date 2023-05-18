@@ -42,7 +42,7 @@ describe("SchoolEditPage tests", () => {
     const axiosMock =new AxiosMockAdapter(axios);
     axiosMock.onGet("/api/currentUser").reply(200, apiCurrentUserFixtures.userOnly);
     axiosMock.onGet("/api/systemInfo").reply(200, systemInfoFixtures.showingNeither);
-    
+
     const queryClient = new QueryClient();
 
     test("renders without crashing", () => {
@@ -109,7 +109,7 @@ describe("SchoolEditPage tests", () => {
         await act(async () => {
             fireEvent.change(nameInput, { target: { value: 'UCSD' } })
             fireEvent.change(rankInput, { target: { value: '34' } })
-            fireEvent.change(rankInput, { target: { value: 'Public land-grant research university in La Jolla, California. It is ranked among the best universities in the world.' } })
+            fireEvent.change(descriptionInput, { target: { value: 'Public land-grant research university in La Jolla, California. It is ranked among the best universities in the world.' } })
             fireEvent.click(updateButton);
         });
 
