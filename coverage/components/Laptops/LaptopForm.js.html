@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for components/Schools/SchoolForm.js</title>
+    <title>Code coverage report for components/Laptops/LaptopForm.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,7 +19,7 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">components/Schools</a> SchoolForm.js</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">components/Laptops</a> LaptopForm.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
@@ -173,7 +173,24 @@
 <a name='L108'></a><a href='#L108'>108</a>
 <a name='L109'></a><a href='#L109'>109</a>
 <a name='L110'></a><a href='#L110'>110</a>
-<a name='L111'></a><a href='#L111'>111</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L111'></a><a href='#L111'>111</a>
+<a name='L112'></a><a href='#L112'>112</a>
+<a name='L113'></a><a href='#L113'>113</a>
+<a name='L114'></a><a href='#L114'>114</a>
+<a name='L115'></a><a href='#L115'>115</a>
+<a name='L116'></a><a href='#L116'>116</a>
+<a name='L117'></a><a href='#L117'>117</a>
+<a name='L118'></a><a href='#L118'>118</a>
+<a name='L119'></a><a href='#L119'>119</a>
+<a name='L120'></a><a href='#L120'>120</a>
+<a name='L121'></a><a href='#L121'>121</a>
+<a name='L122'></a><a href='#L122'>122</a>
+<a name='L123'></a><a href='#L123'>123</a>
+<a name='L124'></a><a href='#L124'>124</a>
+<a name='L125'></a><a href='#L125'>125</a>
+<a name='L126'></a><a href='#L126'>126</a>
+<a name='L127'></a><a href='#L127'>127</a>
+<a name='L128'></a><a href='#L128'>128</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -195,6 +212,23 @@
 <span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -288,7 +322,7 @@ import { Button, Form } from 'react-bootstrap';
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom';
 &nbsp;
-function SchoolForm({ initialContents, submitAction, buttonLabel = "Create" }) {
+function LaptopForm({ initialContents, submitAction, buttonLabel = "Create" }) {
 &nbsp;
     const navigate = useNavigate();
     
@@ -302,25 +336,25 @@ function SchoolForm({ initialContents, submitAction, buttonLabel = "Create" }) {
     );
     // Stryker enable all
    
-    const testIdPrefix = "SchoolForm";
+    const testIdPrefix = "LaptopForm";
 &nbsp;
-    return (
+	return (
 &nbsp;
-        &lt;Form onSubmit={handleSubmit(submitAction)}&gt;
+		&lt;Form onSubmit={handleSubmit(submitAction)}&gt;
 &nbsp;
-            {initialContents &amp;&amp; (
-                &lt;Form.Group className="mb-3" &gt;
-                    &lt;Form.Label htmlFor="id"&gt;Id&lt;/Form.Label&gt;
-                    &lt;Form.Control
-                        data-testid={testIdPrefix + "-id"}
-                        id="id"
-                        type="text"
-                        {...register("id")}
-                        value={initialContents.id}
-                        disabled
-                    /&gt;
-                &lt;/Form.Group&gt;
-            )}
+			{initialContents &amp;&amp; (
+				&lt;Form.Group className="mb-3" &gt;
+					&lt;Form.Label htmlFor="id"&gt;Id&lt;/Form.Label&gt;
+					&lt;Form.Control
+						data-testid={testIdPrefix + "-id"}
+						id="id"
+						type="text"
+						{...register("id")}
+						value={initialContents.id}
+						disabled
+					/&gt;
+				&lt;/Form.Group&gt;
+			)}
 &nbsp;
             &lt;Form.Group className="mb-3" &gt;
                 &lt;Form.Label htmlFor="name"&gt;Name&lt;/Form.Label&gt;
@@ -343,18 +377,34 @@ function SchoolForm({ initialContents, submitAction, buttonLabel = "Create" }) {
             &lt;/Form.Group&gt;
 &nbsp;
             &lt;Form.Group className="mb-3" &gt;
-                &lt;Form.Label htmlFor="rank"&gt;Rank&lt;/Form.Label&gt;
+                &lt;Form.Label htmlFor="cpu"&gt;CPU&lt;/Form.Label&gt;
                 &lt;Form.Control
-                    data-testid={testIdPrefix + "-rank"}
-                    id="rank"
+                    data-testid={testIdPrefix + "-cpu"}
+                    id="cpu"
                     type="text"
-                    isInvalid={Boolean(errors.rank)}
-                    {...register("rank", {
-                        required: "Rank is required."
+                    isInvalid={Boolean(errors.cpu)}
+                    {...register("cpu", {
+                        required: "CPU is required."
                     })}
                 /&gt;
                 &lt;Form.Control.Feedback type="invalid"&gt;
-                    {errors.description?.message}
+                    {errors.cpu?.message}
+                &lt;/Form.Control.Feedback&gt;
+            &lt;/Form.Group&gt;
+&nbsp;
+            &lt;Form.Group className="mb-3" &gt;
+                &lt;Form.Label htmlFor="gpu"&gt;GPU&lt;/Form.Label&gt;
+                &lt;Form.Control
+                    data-testid={testIdPrefix + "-gpu"}
+                    id="gpu"
+                    type="text"
+                    isInvalid={Boolean(errors.gpu)}
+                    {...register("gpu", {
+                        required: "GPU is required."
+                    })}
+                /&gt;
+                &lt;Form.Control.Feedback type="invalid"&gt;
+                    {errors.gpu?.message}
                 &lt;/Form.Control.Feedback&gt;
             &lt;/Form.Group&gt;
 &nbsp;
@@ -373,34 +423,35 @@ function SchoolForm({ initialContents, submitAction, buttonLabel = "Create" }) {
                     {errors.description?.message}
                 &lt;/Form.Control.Feedback&gt;
             &lt;/Form.Group&gt;
-            
-            &lt;Button
-                type="submit"
-                data-testid={testIdPrefix + "-submit"}
-            &gt;
-                {buttonLabel}
-            &lt;/Button&gt;
-            &lt;Button
-                variant="Secondary"
-                onClick={() =&gt; navigate(-1)}
-                data-testid={testIdPrefix + "-cancel"}
-            &gt;
-                Cancel
-            &lt;/Button&gt;
 &nbsp;
-        &lt;/Form&gt;
 &nbsp;
-    )
+			&lt;Button
+				type="submit"
+				data-testid={testIdPrefix + "-submit"}
+			&gt;
+				{buttonLabel}
+			&lt;/Button&gt;
+			&lt;Button
+				variant="Secondary"
+				onClick={() =&gt; navigate(-1)}
+				data-testid={testIdPrefix + "-cancel"}
+			&gt;
+				Cancel
+			&lt;/Button&gt;
+&nbsp;
+		&lt;/Form&gt;
+&nbsp;
+	)
 }
 &nbsp;
-export default SchoolForm;</pre></td></tr></table></pre>
+export default LaptopForm;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Thu May 18 2023 15:19:02 GMT-0700 (Pacific Daylight Time)
+                at Thu May 18 2023 15:23:17 GMT-0700 (Pacific Daylight Time)
             </div>
         <script src="../../prettify.js"></script>
         <script>
