@@ -153,6 +153,7 @@ describe("UCSBDatesIndexPage tests", () => {
 			</QueryClientProvider>
 		);
 
+
 		await waitFor(() => { expect(getByTestId(`${testId}-cell-row-0-col-id`)).toBeInTheDocument(); });
 
 		expect(getByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent("1");
@@ -163,22 +164,7 @@ describe("UCSBDatesIndexPage tests", () => {
 
 		fireEvent.click(deleteButton);
 
-<<<<<<< HEAD
 		await waitFor(() => { expect(mockToast).toBeCalledWith("UCSBDate with id 1 was deleted") });
-=======
-		expect(mockDelete).toHaveBeenCalledTimes(1);
-		expect(mockDelete).toHaveBeenCalledWith(3);
-
-		await waitFor(() => expect(mockNavigate).toHaveBeenCalledWith("/laptops/list"));
-
-
-		// assert - check that the console.log was called with the expected message
-		expect(console.log).toHaveBeenCalled();
-		const message = console.log.mock.calls[0][0];
-		const expectedMessage = `LaptopIndexPage deleteCallback: {"id":3,"name":"Alienware m18","cpu":"Intel Core i7-13650HX","gpu":"NVIDIA GeForce RTX 4050 Laptop","description":"Extremely fast but expensive"}`;
-		expect(message).toMatch(expectedMessage);
-		restoreConsole();
->>>>>>> 6f61b1d0b4bb39571bf8ea44378528b3691b4154
 
 	});
 

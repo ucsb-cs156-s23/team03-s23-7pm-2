@@ -81,7 +81,6 @@ describe("LaptopsCreatePage tests", () => {
         const descriptionField = getByTestId("LaptopForm-description");
         const submitButton = getByTestId("LaptopForm-submit");
 
-
         fireEvent.change(nameField, { target: { value: 'OMEN 16t-k000' } });
         fireEvent.change(cpuField, { target: { value: 'Intel Core i5-12500H' } });
         fireEvent.change(gpuField, { target: { value: 'NVIDIA GeForce RTX 3050 Laptop' } });
@@ -90,6 +89,7 @@ describe("LaptopsCreatePage tests", () => {
         expect(submitButton).toBeInTheDocument();
 
         fireEvent.click(submitButton);
+
 
         await waitFor(() => expect(axiosMock.history.post.length).toBe(1));
 
