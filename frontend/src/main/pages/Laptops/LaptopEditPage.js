@@ -16,7 +16,7 @@ export default function LaptopEditPage() {
     const onSubmit = async (laptop) => {
         const updatedLaptop = laptopUtils.update(laptop);
         console.log("updatedLaptop: " + JSON.stringify(updatedLaptop));
-        navigate("/laptops");
+        navigate("/laptops/list");
     }  
 
     return (

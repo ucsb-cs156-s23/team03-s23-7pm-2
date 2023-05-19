@@ -10,7 +10,7 @@ export default function LaptopCreatePage() {
   const onSubmit = async (laptop) => {
     const createdLaptop = laptopUtils.add(laptop);
     console.log("createdLaptop: " + JSON.stringify(createdLaptop));
-    navigate("/laptops");
+    navigate("/laptops/list");
   }  
 
   return (

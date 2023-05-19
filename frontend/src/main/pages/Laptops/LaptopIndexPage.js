@@ -17,7 +17,7 @@ export default function LaptopIndexPage() {
 	const deleteCallback = async (cell) => {
 		console.log(`LaptopIndexPage deleteCallback: ${showCell(cell)})`);
 		laptopUtils.del(cell.row.values.id);
-		navigate("/laptops");
+		navigate("/laptops/list");
 	}
 
 	return (
