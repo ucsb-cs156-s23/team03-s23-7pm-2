@@ -16,6 +16,11 @@ import SchoolEditPage from "main/pages/Schools/SchoolEditPage";
 import SchoolIndexPage from "main/pages/Schools/SchoolIndexPage";
 import SchoolDetailsPage from "main/pages/Schools/SchoolDetailsPage";
 
+import LaptopIndexPage from "main/pages/Laptops/LaptopIndexPage";
+import LaptopEditPage from "main/pages/Laptops/LaptopEditPage";
+import LaptopDetailsPage from "main/pages/Laptops/LaptopDetailsPage";
+import LaptopCreatePage from "main/pages/Laptops/LaptopCreatePage";
+
 import { hasRole, useCurrentUser } from "main/utils/currentUser";
 
 import "bootstrap/dist/css/bootstrap.css";
@@ -59,6 +64,23 @@ function App() {
               <Route exact path="/ucsbdates/create" element={<UCSBDatesCreatePage />} />
               <Route exact path="/schools/create" element={<SchoolCreatePage />} />
               <Route exact path="/schools/edit/:id" element={<SchoolEditPage />} />
+            </>
+          )
+        }
+
+        {
+          hasRole(currentUser, "ROLE_USER") && (
+            <>
+              <Route exact path="/laptops/list" element={<LaptopIndexPage />} />
+            </>
+          )
+        }
+        {
+          hasRole(currentUser, "ROLE_ADMIN") && (
+            <>
+              <Route exact path="/laptops/edit/:id" element={<LaptopEditPage />} />
+              <Route exact path="/laptops/details/:id" element={<LaptopDetailsPage />} />
+              <Route exact path="/laptops/create" element={<LaptopCreatePage />} />
             </>
           )
         }
