@@ -15,6 +15,9 @@ import UCSBDatesEditPage from "main/pages/UCSBDates/UCSBDatesEditPage";
 import { hasRole, useCurrentUser } from "main/utils/currentUser";
 
 import "bootstrap/dist/css/bootstrap.css";
+import LaptopIndexPage from "main/pages/Laptops/LaptopIndexPage";
+import LaptopEditPage from "main/pages/Laptops/LaptopEditPage";
+import LaptopCreatePage from "main/pages/Laptops/LaptopCreatePage";
 
 
 function App() {
@@ -51,6 +54,22 @@ function App() {
             <>
               <Route exact path="/ucsbdates/edit/:id" element={<UCSBDatesEditPage />} />
               <Route exact path="/ucsbdates/create" element={<UCSBDatesCreatePage />} />
+            </>
+          )
+        }
+
+        {
+          hasRole(currentUser, "ROLE_USER") && (
+            <>
+              <Route exact path="/laptops/list" element={<LaptopIndexPage />} />
+            </>
+          )
+        }
+        {
+          hasRole(currentUser, "ROLE_ADMIN") && (
+            <>
+              <Route exact path="/laptops/edit/:id" element={<LaptopEditPage />} />
+              <Route exact path="/laptops/create" element={<LaptopCreatePage />} />
             </>
           )
         }
