@@ -5,12 +5,15 @@ import { cellToAxiosParamsDelete, onDeleteSuccess } from "main/utils/laptopUtils
 import { useNavigate } from "react-router-dom";
 import { hasRole } from "main/utils/currentUser";
 
-export default function LaptopsTable({ laptops, currentUser }) {
-
+export default function LaptopsTable({ laptops, currentUser, showButtons=true }) {
 	const navigate = useNavigate();
 
 	const editCallback = (cell) => {
 		navigate(`/laptops/edit/${cell.row.values.id}`)
+	}
+
+	const detailsCallback = (cell) => {
+		navigate(`/laptops/details/${cell.row.values.id}`)
 	}
 
 	// Stryker disable all : hard to test for query caching
@@ -50,7 +53,8 @@ export default function LaptopsTable({ laptops, currentUser }) {
 		}
 	];
 
-	if (hasRole(currentUser, "ROLE_ADMIN")) {
+	if (showButtons && hasRole(currentUser, "ROLE_ADMIN")) {
+		columns.push(ButtonColumn("Details", "primary", detailsCallback, "LaptopTable"));
 		columns.push(ButtonColumn("Edit", "primary", editCallback, "LaptopTable"));
 		columns.push(ButtonColumn("Delete", "danger", deleteCallback, "LaptopTable"));
 	}
