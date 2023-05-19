@@ -83,7 +83,7 @@ describe("LaptopCreatePage tests", () => {
         });
 
         await waitFor(() => expect(mockAdd).toHaveBeenCalled());
-        await waitFor(() => expect(mockNavigate).toHaveBeenCalledWith("/laptops"));
+        await waitFor(() => expect(mockNavigate).toHaveBeenCalledWith("/laptops/list"));
 
         // assert - check that the console.log was called with the expected message
         expect(console.log).toHaveBeenCalled();
