@@ -89,6 +89,10 @@ describe("UserTable tests", () => {
 		expect(editButton).toBeInTheDocument();
 		expect(editButton).toHaveClass("btn-primary");
 
+		const detailsButton = getByTestId(`${testId}-cell-row-0-col-Details-button`);
+		expect(detailsButton).toBeInTheDocument();
+		expect(detailsButton).toHaveClass("btn-primary");
+
 		const deleteButton = getByTestId(`${testId}-cell-row-0-col-Delete-button`);
 		expect(deleteButton).toBeInTheDocument();
 		expect(deleteButton).toHaveClass("btn-danger");
@@ -116,6 +120,30 @@ describe("UserTable tests", () => {
 		fireEvent.click(editButton);
 
 		await waitFor(() => expect(mockedNavigate).toHaveBeenCalledWith('/laptops/edit/2'));
+
+	});
+
+	test("Details button navigates to the details page for admin user", async () => {
+
+		const currentUser = currentUserFixtures.adminUser;
+
+		const { getByText, getByTestId } = render(
+			<QueryClientProvider client={queryClient}>
+				<MemoryRouter>
+					<LaptopsTable laptops={laptopFixtures.threeLaptops} currentUser={currentUser} />
+				</MemoryRouter>
+			</QueryClientProvider>
+
+		);
+
+		await waitFor(() => { expect(getByTestId(`LaptopTable-cell-row-0-col-id`)).toHaveTextContent("2"); });
+
+		const detailsButton = getByTestId(`LaptopTable-cell-row-0-col-Details-button`);
+		expect(detailsButton).toBeInTheDocument();
+
+		fireEvent.click(detailsButton);
+
+		await waitFor(() => expect(mockedNavigate).toHaveBeenCalledWith('/laptops/details/2'));
 
 	});
 
