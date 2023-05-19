@@ -1,7 +1,7 @@
 import { fireEvent, queryByTestId, render, waitFor } from "@testing-library/react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter } from "react-router-dom";
-import LaptopsEditPage from "main/pages/Laptops/LaptopsEditPage";
+import LaptopsEditPage from "main/pages/Laptops/LaptopEditPage";
 
 import { apiCurrentUserFixtures } from "fixtures/currentUserFixtures";
 import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
@@ -33,7 +33,7 @@ jest.mock('react-router-dom', () => {
     };
 });
 
-describe("UCSBDatesEditPage tests", () => {
+describe("LaptopsEditPage tests", () => {
 
     describe("when the backend doesn't return a todo", () => {
 
@@ -44,7 +44,7 @@ describe("UCSBDatesEditPage tests", () => {
             axiosMock.resetHistory();
             axiosMock.onGet("/api/currentUser").reply(200, apiCurrentUserFixtures.userOnly);
             axiosMock.onGet("/api/systemInfo").reply(200, systemInfoFixtures.showingNeither);
-            axiosMock.onGet("/api/ucsbdates", { params: { id: 17 } }).timeout();
+            axiosMock.onGet("/api/laptops", { params: { id: 17 } }).timeout();
         });
 
         const queryClient = new QueryClient();

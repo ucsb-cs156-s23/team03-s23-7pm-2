@@ -1,7 +1,7 @@
 import BasicLayout from "main/layouts/BasicLayout/BasicLayout";
 import { useParams } from "react-router-dom";
 import LaptopTable from "main/components/Laptops/LaptopTable";
-import { laptopUtils } from "main/utils/laptopUtils";
+import { useBackend } from 'main/utils/useBackend';
 
 export default function LaptopDetailsPage() {
 	let { id } = useParams();
@@ -18,7 +18,7 @@ export default function LaptopDetailsPage() {
 		<BasicLayout>
 			<div className="pt-2">
 				<h1>Laptop Details</h1>
-				<LaptopTable laptops={laptops} showButtons={false} />
+				<LaptopTable laptops={laptops} showButtons={true} />
 			</div>
 		</BasicLayout>
 	)

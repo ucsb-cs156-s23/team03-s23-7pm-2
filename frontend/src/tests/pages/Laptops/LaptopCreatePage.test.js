@@ -1,5 +1,5 @@
 import { render, waitFor, fireEvent } from "@testing-library/react";
-import LaptopsCreatePage from "main/pages/Laptops/LaptopsCreatePage";
+import LaptopsCreatePage from "main/pages/Laptops/LaptopCreatePage";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter } from "react-router-dom";
 
