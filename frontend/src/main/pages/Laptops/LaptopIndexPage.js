@@ -1,33 +1,27 @@
 import React from 'react'
-import Button from 'react-bootstrap/Button';
+import { useBackend } from 'main/utils/useBackend';
+
 import BasicLayout from "main/layouts/BasicLayout/BasicLayout";
-import LaptopTable from 'main/components/Laptops/LaptopTable';
-import { laptopUtils } from 'main/utils/laptopUtils';
-import { useNavigate, Link } from 'react-router-dom';
+import LaptopsTable from 'main/components/Laptops/LaptopTable';
+import { useCurrentUser } from 'main/utils/currentUser'
 
-export default function LaptopIndexPage() {
+export default function LaptopsIndexPage() {
 
-	const navigate = useNavigate();
+	const currentUser = useCurrentUser();
 
-	const laptopCollection = laptopUtils.get();
-	const laptops = laptopCollection.laptops;
-
-	const showCell = (cell) => JSON.stringify(cell.row.values);
-
-	const deleteCallback = async (cell) => {
-		console.log(`LaptopIndexPage deleteCallback: ${showCell(cell)})`);
-		laptopUtils.del(cell.row.values.id);
-		navigate("/laptops");
-	}
+	const { data: laptops, error: _error, status: _status } =
+		useBackend(
+			// Stryker disable next-line all : don't test internal caching of React Query
+			["/api/laptops/all"],
+			{ method: "GET", url: "/api/laptops/all" },
+			[]
+		);
 
 	return (
 		<BasicLayout>
 			<div className="pt-2">
-				<Button style={{ float: "right" }} as={Link} to="/laptops/create">
-					Create Laptop
-				</Button>
 				<h1>Laptops</h1>
-				<LaptopTable laptops={laptops} deleteCallback={deleteCallback} />
+				<LaptopsTable laptops={laptops} currentUser={currentUser} />
 			</div>
 		</BasicLayout>
 	)

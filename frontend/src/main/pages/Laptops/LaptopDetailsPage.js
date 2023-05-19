@@ -6,13 +6,19 @@ import { laptopUtils } from "main/utils/laptopUtils";
 export default function LaptopDetailsPage() {
 	let { id } = useParams();
 
-	const response = laptopUtils.getById(id);
+	const { data: laptops, error: _error, status: _status } =
+		useBackend(
+			// Stryker disable next-line all : don't test internal caching of React Query
+			["/api/laptops/all"],
+			{ method: "GET", url: "/api/laptops/all" },
+			[]
+		);
 
 	return (
 		<BasicLayout>
 			<div className="pt-2">
 				<h1>Laptop Details</h1>
-				<LaptopTable laptops={[response.laptop]} showButtons={false} />
+				<LaptopTable laptops={laptops} showButtons={false} />
 			</div>
 		</BasicLayout>
 	)
