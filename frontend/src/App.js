@@ -11,13 +11,15 @@ import UCSBDatesIndexPage from "main/pages/UCSBDates/UCSBDatesIndexPage";
 import UCSBDatesCreatePage from "main/pages/UCSBDates/UCSBDatesCreatePage";
 import UCSBDatesEditPage from "main/pages/UCSBDates/UCSBDatesEditPage";
 
+import LaptopIndexPage from "main/pages/Laptops/LaptopIndexPage";
+import LaptopEditPage from "main/pages/Laptops/LaptopEditPage";
+import LaptopDetailsPage from "main/pages/Laptops/LaptopDetailsPage";
+import LaptopCreatePage from "main/pages/Laptops/LaptopCreatePage";
+
 
 import { hasRole, useCurrentUser } from "main/utils/currentUser";
 
 import "bootstrap/dist/css/bootstrap.css";
-import LaptopIndexPage from "main/pages/Laptops/LaptopIndexPage";
-import LaptopEditPage from "main/pages/Laptops/LaptopEditPage";
-import LaptopCreatePage from "main/pages/Laptops/LaptopCreatePage";
 
 
 function App() {
@@ -69,6 +71,7 @@ function App() {
           hasRole(currentUser, "ROLE_ADMIN") && (
             <>
               <Route exact path="/laptops/edit/:id" element={<LaptopEditPage />} />
+              <Route exact path="/laptops/details/:id" element={<LaptopDetailsPage />} />
               <Route exact path="/laptops/create" element={<LaptopCreatePage />} />
             </>
           )
