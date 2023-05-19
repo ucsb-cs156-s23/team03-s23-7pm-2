@@ -75,11 +75,16 @@ describe("LaptopsCreatePage tests", () => {
             expect(getByTestId("LaptopForm-name")).toBeInTheDocument();
         });
 
+<<<<<<< HEAD
         const nameField = getByTestId("LaptopForm-name");
         const cpuField = getByTestId("LaptopForm-cpu");
         const gpuField = getByTestId("LaptopForm-gpu");
         const descriptionField = getByTestId("LaptopForm-description");
         const submitButton = getByTestId("LaptopForm-submit");
+=======
+        await waitFor(() => expect(mockAdd).toHaveBeenCalled());
+        await waitFor(() => expect(mockNavigate).toHaveBeenCalledWith("/laptops/list"));
+>>>>>>> 6f61b1d0b4bb39571bf8ea44378528b3691b4154
 
         fireEvent.change(nameField, { target: { value: 'OMEN 16t-k000' } });
         fireEvent.change(cpuField, { target: { value: 'Intel Core i5-12500H' } });

@@ -38,6 +38,7 @@ export default function LaptopsCreatePage() {
     return <Navigate to="/laptops/list" />
   }
 
+
   return (
     <BasicLayout>
       <div className="pt-2">

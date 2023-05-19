@@ -22,6 +22,7 @@ export default function LaptopsEditPage() {
         );
 
 
+<<<<<<< HEAD
     const objectToAxiosPutParams = (laptop) => ({
         url: "/api/laptops",
         method: "PUT",
@@ -56,6 +57,13 @@ export default function LaptopsEditPage() {
     if (isSuccess) {
         return <Navigate to="/laptops/list" />
     }
+=======
+    const onSubmit = async (laptop) => {
+        const updatedLaptop = laptopUtils.update(laptop);
+        console.log("updatedLaptop: " + JSON.stringify(updatedLaptop));
+        navigate("/laptops/list");
+    }  
+>>>>>>> 6f61b1d0b4bb39571bf8ea44378528b3691b4154
 
     return (
         <BasicLayout>
