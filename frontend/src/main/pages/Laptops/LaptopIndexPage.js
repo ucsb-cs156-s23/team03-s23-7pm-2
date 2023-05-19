@@ -9,7 +9,6 @@ export default function LaptopsIndexPage() {
 
 	const currentUser = useCurrentUser();
 
-<<<<<<< HEAD
 	const { data: laptops, error: _error, status: _status } =
 		useBackend(
 			// Stryker disable next-line all : don't test internal caching of React Query
@@ -17,18 +16,7 @@ export default function LaptopsIndexPage() {
 			{ method: "GET", url: "/api/laptops/all" },
 			[]
 		);
-=======
-	const laptopCollection = laptopUtils.get();
-	const laptops = laptopCollection.laptops;
 
-	const showCell = (cell) => JSON.stringify(cell.row.values);
-
-	const deleteCallback = async (cell) => {
-		console.log(`LaptopIndexPage deleteCallback: ${showCell(cell)})`);
-		laptopUtils.del(cell.row.values.id);
-		navigate("/laptops/list");
-	}
->>>>>>> 6f61b1d0b4bb39571bf8ea44378528b3691b4154
 
 	return (
 		<BasicLayout>
