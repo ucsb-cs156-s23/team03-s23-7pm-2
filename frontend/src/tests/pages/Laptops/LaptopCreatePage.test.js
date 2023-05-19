@@ -90,6 +90,7 @@ describe("LaptopsCreatePage tests", () => {
 
         fireEvent.click(submitButton);
 
+
         await waitFor(() => expect(axiosMock.history.post.length).toBe(1));
 
         expect(axiosMock.history.post[0].params).toEqual(

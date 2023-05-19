@@ -153,6 +153,7 @@ describe("UCSBDatesIndexPage tests", () => {
 			</QueryClientProvider>
 		);
 
+
 		await waitFor(() => { expect(getByTestId(`${testId}-cell-row-0-col-id`)).toBeInTheDocument(); });
 
 		expect(getByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent("1");

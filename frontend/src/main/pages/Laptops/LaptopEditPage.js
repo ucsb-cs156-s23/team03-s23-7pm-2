@@ -39,7 +39,7 @@ export default function LaptopsEditPage() {
     const onSuccess = (laptop) => {
         toast(`Laptop Updated - id: ${laptop.id} name: ${laptop.name}`);
     }
-
+    
     const mutation = useBackendMutation(
         objectToAxiosPutParams,
         { onSuccess },
@@ -56,6 +56,7 @@ export default function LaptopsEditPage() {
     if (isSuccess) {
         return <Navigate to="/laptops/list" />
     }
+
 
     return (
         <BasicLayout>

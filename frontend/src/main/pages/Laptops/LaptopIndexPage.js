@@ -17,6 +17,7 @@ export default function LaptopsIndexPage() {
 			[]
 		);
 
+
 	return (
 		<BasicLayout>
 			<div className="pt-2">

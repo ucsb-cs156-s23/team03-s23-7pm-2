@@ -167,6 +167,7 @@ describe("LaptopsEditPage tests", () => {
             expect(mockToast).toBeCalledWith("Laptop Updated - id: 17 name: ASUS E210");
             expect(mockNavigate).toBeCalledWith({ "to": "/laptops/list" });
 
+
             expect(axiosMock.history.put.length).toBe(1); // times called
             expect(axiosMock.history.put[0].params).toEqual({ id: 17 });
             expect(axiosMock.history.put[0].data).toBe(JSON.stringify({
