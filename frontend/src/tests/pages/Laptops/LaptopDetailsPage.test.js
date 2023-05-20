@@ -33,6 +33,13 @@ describe("LaptopDetailsPage tests", () => {
 		axiosMock.onGet("/api/systemInfo").reply(200, systemInfoFixtures.showingNeither);
 	};
 
+	const setupAdminUser = () => {
+		axiosMock.reset();
+		axiosMock.resetHistory();
+		axiosMock.onGet("/api/currentUser").reply(200, apiCurrentUserFixtures.adminUser);
+		axiosMock.onGet("/api/systemInfo").reply(200, systemInfoFixtures.showingNeither);
+	};
+
 	test("renders without crashing", async () => {
 		const queryClient = new QueryClient();
 		setupUserOnly();
@@ -58,7 +65,7 @@ describe("LaptopDetailsPage tests", () => {
 	test("loads the correct fields, and no buttons", async () => {
 		const queryClient = new QueryClient();
 		const laptop = laptopFixtures.oneLaptop[0];
-		setupUserOnly();
+		setupAdminUser();
 		axiosMock.onGet("/api/laptops", { params: { id: 1 } }).reply(200, laptop);
 
 		const { getByTestId, findByTestId } = render(
@@ -83,9 +90,9 @@ describe("LaptopDetailsPage tests", () => {
 		expect(gpuField).toHaveTextContent(laptop.gpu);
 		expect(descriptionField).toHaveTextContent(laptop.description);
 
-		expect(screen.queryByText("Delete")).toBeNull();
-		expect(screen.queryByText("Edit")).toBeNull();
-		expect(screen.queryByText("Details")).toBeNull();
+		expect(screen.queryByText("Delete")).not.toBeInTheDocument();
+		expect(screen.queryByText("Edit")).not.toBeInTheDocument();
+		expect(screen.queryByText("Details")).not.toBeInTheDocument();
 	});
 
 });
