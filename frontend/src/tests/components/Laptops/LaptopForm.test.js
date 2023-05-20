@@ -37,11 +37,11 @@ describe("LaptopForm tests", () => {
 
 	});
 
-	test("renders correctly when passing in initialContents", async () => {
+	test("renders correctly when passing in a initialLaptop", async () => {
 		render(
 			<QueryClientProvider client={queryClient}>
 				<Router>
-					<LaptopForm initialContents={laptopFixtures.oneLaptop} />
+					<LaptopForm initialLaptop={laptopFixtures.oneLaptop} />
 				</Router>
 			</QueryClientProvider>
 		);
