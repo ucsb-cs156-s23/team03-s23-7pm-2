@@ -2,7 +2,7 @@ import { render, screen, waitFor } from "@testing-library/react";
 import LaptopDetailsPage from "main/pages/Laptops/LaptopDetailsPage";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter } from "react-router-dom";
-import { apiCurrentUserFixtures }  from "fixtures/currentUserFixtures";
+import { apiCurrentUserFixtures } from "fixtures/currentUserFixtures";
 import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
 import { laptopFixtures } from "fixtures/laptopFixtures";
 import axios from "axios";
@@ -11,21 +11,21 @@ import mockConsole from "jest-mock-console";
 
 const mockNavigate = jest.fn();
 jest.mock('react-router-dom', () => {
-    const originalModule = jest.requireActual('react-router-dom');
-    return {
-        __esModule: true,
-        ...originalModule,
-        useParams: () => ({
-            id: 1
-        }),
-        Navigate: (x) => { mockNavigate(x); return null; }
-    };
+	const originalModule = jest.requireActual('react-router-dom');
+	return {
+		__esModule: true,
+		...originalModule,
+		useParams: () => ({
+			id: 1
+		}),
+		Navigate: (x) => { mockNavigate(x); return null; }
+	};
 });
 
 describe("LaptopDetailsPage tests", () => {
 
-	const axiosMock =new AxiosMockAdapter(axios);
-	
+	const axiosMock = new AxiosMockAdapter(axios);
+
 	const setupUserOnly = () => {
 		axiosMock.reset();
 		axiosMock.resetHistory();
@@ -82,6 +82,10 @@ describe("LaptopDetailsPage tests", () => {
 		expect(cpuField).toHaveTextContent(laptop.cpu);
 		expect(gpuField).toHaveTextContent(laptop.gpu);
 		expect(descriptionField).toHaveTextContent(laptop.description);
+
+		expect(screen.queryByText("Delete")).not.toBeInTheDocument();
+		expect(screen.queryByText("Edit")).not.toBeInTheDocument();
+		expect(screen.queryByText("Details")).not.toBeInTheDocument();
 	});
 
 });
