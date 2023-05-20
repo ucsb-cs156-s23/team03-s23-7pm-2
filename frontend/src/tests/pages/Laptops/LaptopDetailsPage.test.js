@@ -83,9 +83,9 @@ describe("LaptopDetailsPage tests", () => {
 		expect(gpuField).toHaveTextContent(laptop.gpu);
 		expect(descriptionField).toHaveTextContent(laptop.description);
 
-		expect(screen.queryByText("Delete")).not.toBeInTheDocument();
-		expect(screen.queryByText("Edit")).not.toBeInTheDocument();
-		expect(screen.queryByText("Details")).not.toBeInTheDocument();
+		expect(screen.queryByText("Delete")).toBeNull();
+		expect(screen.queryByText("Edit")).toBeNull();
+		expect(screen.queryByText("Details")).toBeNull();
 	});
 
 });
