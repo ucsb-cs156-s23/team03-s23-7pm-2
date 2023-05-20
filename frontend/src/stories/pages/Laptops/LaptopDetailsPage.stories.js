@@ -8,7 +8,7 @@ export default {
     component: LaptopDetailsPage
 };
 
-const Template = () => <LaptopDetailsPage />;  // TODO: Does not work - needs id param
+const Template = () => <LaptopDetailsPage />;
 
 export const Default = Template.bind({});
 
