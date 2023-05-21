@@ -19,7 +19,7 @@ export default function AppNavbar({ currentUser, systemInfo, doLogout, currentUr
           </Navbar.Brand>
 
           <Navbar.Toggle />
-
+          
           <Nav className="me-auto">
             {
               systemInfo?.springH2ConsoleEnabled && (
@@ -81,11 +81,11 @@ export default function AppNavbar({ currentUser, systemInfo, doLogout, currentUr
             <Nav className="mr-auto">
               {
                 hasRole(currentUser, "ROLE_USER") && (
-                  <NavDropdown title="Laptops" id="appnavbar-laptops-dropdown" data-testid="appnavbar-laptops-dropdown" >
-                    <NavDropdown.Item href="/laptops/list" data-testid="appnavbar-laptops-list">List</NavDropdown.Item>
+                  <NavDropdown title="Restaurants" id="appnavbar-restaurants-dropdown" data-testid="appnavbar-restaurants-dropdown" >
+                    <NavDropdown.Item href="/restaurants/list" data-testid="appnavbar-restaurants-list">List</NavDropdown.Item>
                     {
                       hasRole(currentUser, "ROLE_ADMIN") && (
-                        <NavDropdown.Item href="/laptops/create" data-testid="appnavbar-laptops-create">Create</NavDropdown.Item>
+                        <NavDropdown.Item href="/restaurants/create" data-testid="appnavbar-restaurants-create">Create</NavDropdown.Item>
                       )
                     }
                   </NavDropdown>
