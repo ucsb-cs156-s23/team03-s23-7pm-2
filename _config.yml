@@ -23,4 +23,4 @@ repo_name: "TBD"
 repo: ucsb-cs156-s23/team03-s23-7pm-2
 owner: ucsb-cs156-s23
 repo_name: team03-s23-7pm-2
-pull_requests: [{"author":{"id":"U_kgDOBXu4sA","is_bot":false,"login":"ColinBaylis","name":""},"headRefName":"Colin-restaurantFrontend","number":26,"title":"Colin restaurant frontend","url":"https://github.com/ucsb-cs156-s23/team03-s23-7pm-2/pull/26"},{"author":{"id":"U_kgDOBtJaVA","is_bot":false,"login":"NateHoang","name":"Nathan Hoang"},"headRefName":"nh-frontendRest","number":19,"title":"Finished nh-frontendRest as everything works","url":"https://github.com/ucsb-cs156-s23/team03-s23-7pm-2/pull/19"}]
+pull_requests: [{"author":{"id":"U_kgDOBXu4sA","is_bot":false,"login":"ColinBaylis","name":""},"headRefName":"Colin-restaurantFrontend","number":26,"title":"Colin restaurant frontend","url":"https://github.com/ucsb-cs156-s23/team03-s23-7pm-2/pull/26"}]
