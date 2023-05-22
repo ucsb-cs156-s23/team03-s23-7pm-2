@@ -1,4 +1,4 @@
-import { fireEvent, render, waitFor } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter } from "react-router-dom";
 import RestaurantsIndexPage from "main/pages/Restaurants/RestaurantIndexPage";
@@ -11,6 +11,13 @@ import axios from "axios";
 import AxiosMockAdapter from "axios-mock-adapter";
 import mockConsole from "jest-mock-console";
 
+const mockNavigate = jest.fn();
+jest.mock('react-router-dom', () => ({
+    ...jest.requireActual('react-router-dom'),
+    useNavigate: () => mockNavigate
+}));
+
+const mockDelete = jest.fn();
 
 const mockToast = jest.fn();
 jest.mock('react-toastify', () => {
@@ -165,7 +172,6 @@ describe("RestaurantsIndexPage tests", () => {
 		fireEvent.click(deleteButton);
 
 		await waitFor(() => { expect(mockToast).toBeCalledWith("Restaurant with id 2 was deleted") });
-
 	});
 
 });
