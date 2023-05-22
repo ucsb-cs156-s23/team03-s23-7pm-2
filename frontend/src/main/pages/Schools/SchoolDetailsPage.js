@@ -12,7 +12,7 @@ export default function SchoolDetailsPage() {
     <BasicLayout>
       <div className="pt-2">
         <h1>School Details</h1>
-        <SchoolTable schools={[response.school || {}]} showButtons={false} />
+        <SchoolTable schools={[response.school]} showButtons={false} />
       </div>
     </BasicLayout>
   )
