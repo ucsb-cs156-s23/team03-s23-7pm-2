@@ -21,6 +21,12 @@ import LaptopEditPage from "main/pages/Laptops/LaptopEditPage";
 import LaptopDetailsPage from "main/pages/Laptops/LaptopDetailsPage";
 import LaptopCreatePage from "main/pages/Laptops/LaptopCreatePage";
 
+import RestaurantCreatePage from "main/pages/Restaurants/RestaurantCreatePage";
+import RestaurantEditPage from "main/pages/Restaurants/RestaurantEditPage";
+import RestaurantIndexPage from "main/pages/Restaurants/RestaurantIndexPage";
+import RestaurantDetailsPage from "main/pages/Restaurants/RestaurantDetailsPage";
+
+
 import { hasRole, useCurrentUser } from "main/utils/currentUser";
 
 import "bootstrap/dist/css/bootstrap.css";
@@ -54,6 +60,7 @@ function App() {
             <>
               <Route exact path="/ucsbdates/list" element={<UCSBDatesIndexPage />} />
               <Route exact path="/schools/list" element={<SchoolIndexPage />} />
+              <Route exact path="/restaurants/list" element={<RestaurantIndexPage />} />
             </>
           )
         }
@@ -62,42 +69,6 @@ function App() {
             <>
               <Route exact path="/ucsbdates/edit/:id" element={<UCSBDatesEditPage />} />
               <Route exact path="/ucsbdates/create" element={<UCSBDatesCreatePage />} />
-              <Route exact path="/schools/create" element={<SchoolCreatePage />} />
-              <Route exact path="/schools/edit/:id" element={<SchoolEditPage />} />
-            </>
-          )
-        }
-
-        {
-          hasRole(currentUser, "ROLE_USER") && (
-            <>
-              <Route exact path="/laptops/list" element={<LaptopIndexPage />} />
-            </>
-          )
-        }
-        {
-          hasRole(currentUser, "ROLE_ADMIN") && (
-            <>
-              <Route exact path="/laptops/edit/:id" element={<LaptopEditPage />} />
-              <Route exact path="/laptops/details/:id" element={<LaptopDetailsPage />} />
-              <Route exact path="/laptops/create" element={<LaptopCreatePage />} />
-            </>
-          )
-        }
-
-        {
-          hasRole(currentUser, "ROLE_USER") && (
-            <>
-              <Route exact path="/laptops/list" element={<LaptopIndexPage />} />
-            </>
-          )
-        }
-        {
-          hasRole(currentUser, "ROLE_ADMIN") && (
-            <>
-              <Route exact path="/laptops/edit/:id" element={<LaptopEditPage />} />
-              <Route exact path="/laptops/details/:id" element={<LaptopDetailsPage />} />
-              <Route exact path="/laptops/create" element={<LaptopCreatePage />} />
             </>
           )
         }
