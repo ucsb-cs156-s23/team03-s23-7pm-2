@@ -4,6 +4,11 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter } from "react-router-dom";
 import mockConsole from "jest-mock-console";
 
+import { apiCurrentUserFixtures } from "fixtures/currentUserFixtures";
+import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
+import axios from "axios";
+import AxiosMockAdapter from "axios-mock-adapter";
+
 const mockNavigate = jest.fn();
 jest.mock('react-router-dom', () => ({
     ...jest.requireActual('react-router-dom'),
@@ -23,13 +28,13 @@ jest.mock('main/utils/restaurantUtils', () => {
                     nextId: 5,
                     restaurants: [
                         {
-                            "id": 3,
-                            "name": "Freebirds",
-                            "address": "879 Embarcadero del Norte",
-                            "city": "Isla Vista",
-                            "state": "CA",
-                            "zip": "93117",
-                            "description": "Burrito joint, and iconic Isla Vista location"
+                            id: 3,
+                            name: "Freebirds",
+                            address: "879 Embarcadero del Norte",
+                            city: "Isla Vista",
+                            state: "CA",
+                            zip: "93117",
+                            description: "Burrito joint, and iconic Isla Vista location"
                         },
                     ]
                 }
@@ -40,6 +45,9 @@ jest.mock('main/utils/restaurantUtils', () => {
 
 
 describe("RestaurantIndexPage tests", () => {
+    const axiosMock =new AxiosMockAdapter(axios);
+    axiosMock.onGet("/api/currentUser").reply(200, apiCurrentUserFixtures.userOnly);
+    axiosMock.onGet("/api/systemInfo").reply(200, systemInfoFixtures.showingNeither);
 
     const queryClient = new QueryClient();
     test("renders without crashing", () => {
