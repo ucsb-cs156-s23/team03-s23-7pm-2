@@ -2,10 +2,7 @@ import BasicLayout from "main/layouts/BasicLayout/BasicLayout";
 import SchoolForm from "main/components/Schools/SchoolForm";
 import { useNavigate } from 'react-router-dom'
 import { schoolUtils } from 'main/utils/schoolUtils';
-import { apiCurrentUserFixtures }  from "fixtures/currentUserFixtures";
-import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
-import axios from "axios";
-import AxiosMockAdapter from "axios-mock-adapter";
+
 export default function SchoolCreatePage() {
 
   let navigate = useNavigate(); 
@@ -13,7 +10,7 @@ export default function SchoolCreatePage() {
   const onSubmit = async (school) => {
     const createdSchool = schoolUtils.add(school);
     console.log("createdSchool: " + JSON.stringify(createdSchool));
-    navigate("/schools");
+    navigate("/schools/list");;
   }  
 
   return (

@@ -1,99 +1,110 @@
-import { render, screen, fireEvent, act, waitFor } from "@testing-library/react";
-import LaptopCreatePage from "main/pages/Laptops/LaptopCreatePage";
+import { render, waitFor, fireEvent } from "@testing-library/react";
+import LaptopsCreatePage from "main/pages/Laptops/LaptopCreatePage";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter } from "react-router-dom";
-import mockConsole from "jest-mock-console";
-import { laptopFixtures } from "fixtures/laptopFixtures";
-import { apiCurrentUserFixtures }  from "fixtures/currentUserFixtures";
+
+import { apiCurrentUserFixtures } from "fixtures/currentUserFixtures";
 import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
 import axios from "axios";
 import AxiosMockAdapter from "axios-mock-adapter";
 
-const mockNavigate = jest.fn();
-jest.mock('react-router-dom', () => ({
-    ...jest.requireActual('react-router-dom'),
-    useNavigate: () => mockNavigate
-}));
-
-const mockAdd = jest.fn();
-jest.mock('main/utils/laptopUtils', () => {
+const mockToast = jest.fn();
+jest.mock('react-toastify', () => {
+    const originalModule = jest.requireActual('react-toastify');
     return {
         __esModule: true,
-        laptopUtils: {
-            add: () => { return mockAdd(); }
-        }
-    }
+        ...originalModule,
+        toast: (x) => mockToast(x)
+    };
 });
 
-describe("LaptopCreatePage tests", () => {
+const mockNavigate = jest.fn();
+jest.mock('react-router-dom', () => {
+    const originalModule = jest.requireActual('react-router-dom');
+    return {
+        __esModule: true,
+        ...originalModule,
+        Navigate: (x) => { mockNavigate(x); return null; }
+    };
+});
 
-    const axiosMock =new AxiosMockAdapter(axios);
-    axiosMock.onGet("/api/currentUser").reply(200, apiCurrentUserFixtures.userOnly);
-    axiosMock.onGet("/api/systemInfo").reply(200, systemInfoFixtures.showingNeither); 
+describe("LaptopsCreatePage tests", () => {
 
-    const queryClient = new QueryClient();
+    const axiosMock = new AxiosMockAdapter(axios);
+
+    beforeEach(() => {
+        axiosMock.reset();
+        axiosMock.resetHistory();
+        axiosMock.onGet("/api/currentUser").reply(200, apiCurrentUserFixtures.userOnly);
+        axiosMock.onGet("/api/systemInfo").reply(200, systemInfoFixtures.showingNeither);
+    });
+
     test("renders without crashing", () => {
+        const queryClient = new QueryClient();
         render(
             <QueryClientProvider client={queryClient}>
                 <MemoryRouter>
-                    <LaptopCreatePage />
+                    <LaptopsCreatePage />
                 </MemoryRouter>
             </QueryClientProvider>
         );
     });
 
-    test("redirects to /laptops on submit", async () => {
+    test("when you fill in the form and hit submit, it makes a request to the backend", async () => {
 
-        const restoreConsole = mockConsole();
+        const queryClient = new QueryClient();
+        const laptop = {
+            id: 17,
+            name: "OMEN 16t-k000",
+            cpu: "Intel Core i5-12500H",
+            gpu: "NVIDIA GeForce RTX 3050 Laptop",
+            description: "Cheap but still fast"
+        };
 
-        mockAdd.mockReturnValue({
-            "laptop": laptopFixtures.oneLaptop
-        });
+        axiosMock.onPost("/api/laptops/post").reply(202, laptop);
 
-        render(
+        const { getByTestId } = render(
             <QueryClientProvider client={queryClient}>
                 <MemoryRouter>
-                    <LaptopCreatePage />
+                    <LaptopsCreatePage />
                 </MemoryRouter>
             </QueryClientProvider>
-        )
+        );
 
-        const nameInput = screen.getByLabelText("Name");
-        expect(nameInput).toBeInTheDocument();
-
-        const cpuInput = screen.getByLabelText("CPU");
-        expect(cpuInput).toBeInTheDocument();
-
-        const gpuInput = screen.getByLabelText("GPU");
-        expect(gpuInput).toBeInTheDocument();
-
-        const descriptionInput = screen.getByLabelText("Description");
-        expect(descriptionInput).toBeInTheDocument();
-
-        const createButton = screen.getByText("Create");
-        expect(createButton).toBeInTheDocument();
-
-        const otherLaptop = {...laptopFixtures.oneLaptop[0]}
-        await act(async () => {
-            fireEvent.change(nameInput, { target: { value: otherLaptop.name } })
-            fireEvent.change(cpuInput, { target: { value: otherLaptop.cpu } })
-            fireEvent.change(gpuInput, { target: { value: otherLaptop.gpu } })
-            fireEvent.change(descriptionInput, { target: { value: otherLaptop.description } })
-            fireEvent.click(createButton);
+        await waitFor(() => {
+            expect(getByTestId("LaptopForm-name")).toBeInTheDocument();
         });
 
-        await waitFor(() => expect(mockAdd).toHaveBeenCalled());
-        await waitFor(() => expect(mockNavigate).toHaveBeenCalledWith("/laptops/list"));
+        const nameField = getByTestId("LaptopForm-name");
+        const cpuField = getByTestId("LaptopForm-cpu");
+        const gpuField = getByTestId("LaptopForm-gpu");
+        const descriptionField = getByTestId("LaptopForm-description");
+        const submitButton = getByTestId("LaptopForm-submit");
 
-        // assert - check that the console.log was called with the expected message
-        expect(console.log).toHaveBeenCalled();
-        const message = console.log.mock.calls[0][0];
-        const expectedMessage = `createdLaptop: {"laptop":${JSON.stringify(laptopFixtures.oneLaptop)}}`
+        fireEvent.change(nameField, { target: { value: 'OMEN 16t-k000' } });
+        fireEvent.change(cpuField, { target: { value: 'Intel Core i5-12500H' } });
+        fireEvent.change(gpuField, { target: { value: 'NVIDIA GeForce RTX 3050 Laptop' } });
+        fireEvent.change(descriptionField, { target: { value: 'Cheap but still fast' } });
 
-        expect(message).toMatch(expectedMessage);
-        restoreConsole();
+        expect(submitButton).toBeInTheDocument();
 
+        fireEvent.click(submitButton);
+
+
+        await waitFor(() => expect(axiosMock.history.post.length).toBe(1));
+
+        expect(axiosMock.history.post[0].params).toEqual(
+            {
+                "name": "OMEN 16t-k000",
+                "cpu": "Intel Core i5-12500H",
+                "gpu": "NVIDIA GeForce RTX 3050 Laptop",
+                "description": "Cheap but still fast"
+            });
+
+        expect(mockToast).toBeCalledWith("New laptop Created - id: 17 name: OMEN 16t-k000");
+        expect(mockNavigate).toBeCalledWith({ "to": "/laptops/list" });
     });
+
 
 });
 

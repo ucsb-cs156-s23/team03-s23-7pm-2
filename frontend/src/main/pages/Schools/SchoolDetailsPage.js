@@ -2,10 +2,7 @@ import BasicLayout from "main/layouts/BasicLayout/BasicLayout";
 import { useParams } from "react-router-dom";
 import SchoolTable from 'main/components/Schools/SchoolTable';
 import { schoolUtils } from 'main/utils/schoolUtils';
-import { apiCurrentUserFixtures }  from "fixtures/currentUserFixtures";
-import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
-import axios from "axios";
-import AxiosMockAdapter from "axios-mock-adapter";
+
 export default function SchoolDetailsPage() {
   let { id } = useParams();
 
@@ -15,7 +12,7 @@ export default function SchoolDetailsPage() {
     <BasicLayout>
       <div className="pt-2">
         <h1>School Details</h1>
-        <SchoolTable schools={[response.school]} showButtons={false} />
+        <SchoolTable schools={[response.school || {}]} showButtons={false} />
       </div>
     </BasicLayout>
   )
