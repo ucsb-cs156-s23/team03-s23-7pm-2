@@ -1,10 +1,10 @@
 
 import React from 'react';
 
-import RestaurantIndexPage from "main/pages/Restaurant/RestaurantIndexPage";
+import RestaurantIndexPage from "main/pages/Restaurants/RestaurantIndexPage";
 
 export default {
-    title: 'pages/Restaurant/RestaurantIndexPage',
+    title: 'pages/Restaurants/RestaurantIndexPage',
     component: RestaurantIndexPage
 };
 

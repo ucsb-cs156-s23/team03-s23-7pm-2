@@ -1,10 +1,10 @@
 
 import React from 'react';
 
-import RestaurantEditPage from "main/pages/Restaurant/RestaurantEditPage";
+import RestaurantEditPage from "main/pages/Restaurants/RestaurantEditPage";
 
 export default {
-    title: 'pages/Restaurant/RestaurantEditPage',
+    title: 'pages/Restaurants/RestaurantEditPage',
     component: RestaurantEditPage
 };
 

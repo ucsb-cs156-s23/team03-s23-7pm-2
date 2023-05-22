@@ -1,10 +1,10 @@
 
 import React from 'react';
 
-import RestaurantCreatePage from "main/pages/Restaurant/RestaurantCreatePage";
+import RestaurantCreatePage from "main/pages/Restaurants/RestaurantCreatePage";
 
 export default {
-    title: 'pages/Restaurant/RestaurantCreatePage',
+    title: 'pages/Restaurants/RestaurantCreatePage',
     component: RestaurantCreatePage
 };
 
