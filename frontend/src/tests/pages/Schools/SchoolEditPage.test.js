@@ -114,7 +114,7 @@ describe("SchoolEditPage tests", () => {
         });
 
         await waitFor(() => expect(mockUpdate).toHaveBeenCalled());
-        await waitFor(() => expect(mockNavigate).toHaveBeenCalledWith("/schools"));
+        await waitFor(() => expect(mockNavigate).toHaveBeenCalledWith("/schools/list"));
 
         // assert - check that the console.log was called with the expected message
         expect(console.log).toHaveBeenCalled();

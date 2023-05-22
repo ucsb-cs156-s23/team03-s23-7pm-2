@@ -47,7 +47,7 @@ describe("SchoolIndexPage tests", () => {
     const axiosMock =new AxiosMockAdapter(axios);
     axiosMock.onGet("/api/currentUser").reply(200, apiCurrentUserFixtures.userOnly);
     axiosMock.onGet("/api/systemInfo").reply(200, systemInfoFixtures.showingNeither);
-    
+
     const queryClient = new QueryClient();
     test("renders without crashing", () => {
         render(
@@ -115,7 +115,7 @@ describe("SchoolIndexPage tests", () => {
         expect(mockDelete).toHaveBeenCalledTimes(1);
         expect(mockDelete).toHaveBeenCalledWith(3);
 
-        await waitFor(() => expect(mockNavigate).toHaveBeenCalledWith("/schools"));
+        await waitFor(() => expect(mockNavigate).toHaveBeenCalledWith("/schools/list"));
 
 
         // assert - check that the console.log was called with the expected message
