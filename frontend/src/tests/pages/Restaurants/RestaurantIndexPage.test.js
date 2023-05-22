@@ -11,13 +11,6 @@ import axios from "axios";
 import AxiosMockAdapter from "axios-mock-adapter";
 import mockConsole from "jest-mock-console";
 
-const mockNavigate = jest.fn();
-jest.mock('react-router-dom', () => ({
-    ...jest.requireActual('react-router-dom'),
-    useNavigate: () => mockNavigate
-}));
-
-const mockDelete = jest.fn();
 
 const mockToast = jest.fn();
 jest.mock('react-toastify', () => {
