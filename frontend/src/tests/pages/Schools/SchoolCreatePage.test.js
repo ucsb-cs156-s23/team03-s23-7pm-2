@@ -1,97 +1,106 @@
-import { render, screen, fireEvent, act, waitFor } from "@testing-library/react";
-import SchoolCreatePage from "main/pages/Schools/SchoolCreatePage";
+import { render, waitFor, fireEvent } from "@testing-library/react";
+import SchoolsCreatePage from "main/pages/Schools/SchoolCreatePage";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter } from "react-router-dom";
-import mockConsole from "jest-mock-console";
-import { apiCurrentUserFixtures }  from "fixtures/currentUserFixtures";
+
+import { apiCurrentUserFixtures } from "fixtures/currentUserFixtures";
 import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
 import axios from "axios";
-import AxiosMockAdapter from "axios-mock-adapter"
-const mockNavigate = jest.fn();
-jest.mock('react-router-dom', () => ({
-    ...jest.requireActual('react-router-dom'),
-    useNavigate: () => mockNavigate
-}));
+import AxiosMockAdapter from "axios-mock-adapter";
 
-const mockAdd = jest.fn();
-jest.mock('main/utils/schoolUtils', () => {
+const mockToast = jest.fn();
+jest.mock('react-toastify', () => {
+    const originalModule = jest.requireActual('react-toastify');
     return {
         __esModule: true,
-        schoolUtils: {
-            add: () => { return mockAdd(); }
-        }
-    }
+        ...originalModule,
+        toast: (x) => mockToast(x)
+    };
 });
 
-describe("SchoolCreatePage tests", () => {
-    const axiosMock =new AxiosMockAdapter(axios);
-    axiosMock.onGet("/api/currentUser").reply(200, apiCurrentUserFixtures.userOnly);
-    axiosMock.onGet("/api/systemInfo").reply(200, systemInfoFixtures.showingNeither);
-    
-    const queryClient = new QueryClient();
+const mockNavigate = jest.fn();
+jest.mock('react-router-dom', () => {
+    const originalModule = jest.requireActual('react-router-dom');
+    return {
+        __esModule: true,
+        ...originalModule,
+        Navigate: (x) => { mockNavigate(x); return null; }
+    };
+});
+
+describe("SchoolsCreatePage tests", () => {
+
+    const axiosMock = new AxiosMockAdapter(axios);
+
+    beforeEach(() => {
+        axiosMock.reset();
+        axiosMock.resetHistory();
+        axiosMock.onGet("/api/currentUser").reply(200, apiCurrentUserFixtures.userOnly);
+        axiosMock.onGet("/api/systemInfo").reply(200, systemInfoFixtures.showingNeither);
+    });
+
     test("renders without crashing", () => {
+        const queryClient = new QueryClient();
         render(
             <QueryClientProvider client={queryClient}>
                 <MemoryRouter>
-                    <SchoolCreatePage />
+                    <SchoolsCreatePage />
                 </MemoryRouter>
             </QueryClientProvider>
         );
     });
 
-    test("redirects to /schools on submit", async () => {
+    test("when you fill in the form and hit submit, it makes a request to the backend", async () => {
 
-        const restoreConsole = mockConsole();
+        const queryClient = new QueryClient();
+        const school = {
+            "id": 17,
+            "name": "UCSB",
+            "rank": "32",      
+            "description":"A public land-grand research university in Santa Barbara, California. It is the third-oldest UC."
+        };
 
-        mockAdd.mockReturnValue({
-            "school": {
-                id: 3,
-                name: "San Diego University",
-                rank: "34",
-                description: "Public land-grant research university in La Jolla, California. It is ranked among the best universities in the world."
-            }
-        });
+        axiosMock.onPost("/api/schools/post").reply(202, school);
 
-        render(
+        const { getByTestId } = render(
             <QueryClientProvider client={queryClient}>
                 <MemoryRouter>
-                    <SchoolCreatePage />
+                    <SchoolsCreatePage />
                 </MemoryRouter>
             </QueryClientProvider>
-        )
+        );
 
-        const nameInput = screen.getByLabelText("Name");
-        expect(nameInput).toBeInTheDocument();
-
-
-        const rankInput = screen.getByLabelText("Rank");
-        expect(rankInput).toBeInTheDocument();
-
-        const descriptionInput = screen.getByLabelText("Description");
-        expect(descriptionInput).toBeInTheDocument();
-
-        const createButton = screen.getByText("Create");
-        expect(createButton).toBeInTheDocument();
-
-        await act(async () => {
-            fireEvent.change(nameInput, { target: { value: 'San Diego University' } })
-            fireEvent.change(rankInput, { target: { value: '34' } })
-            fireEvent.change(descriptionInput, { target: { value: 'Public land-grant research university in La Jolla, California. It is ranked among the best universities in the world.' } })
-            fireEvent.click(createButton);
+        await waitFor(() => {
+            expect(getByTestId("SchoolForm-name")).toBeInTheDocument();
         });
 
-        await waitFor(() => expect(mockAdd).toHaveBeenCalled());
-        await waitFor(() => expect(mockNavigate).toHaveBeenCalledWith("/schools/list"));
+        const nameField = getByTestId("SchoolForm-name");
+        const rankField = getByTestId("SchoolForm-rank");
+        const descriptionField = getByTestId("SchoolForm-description");
+        const submitButton = getByTestId("SchoolForm-submit");
 
-        // assert - check that the console.log was called with the expected message
-        expect(console.log).toHaveBeenCalled();
-        const message = console.log.mock.calls[0][0];
-        const expectedMessage =  `createdSchool: {"school":{"id":3,"name":"San Diego University","rank":"34","description":"Public land-grant research university in La Jolla, California. It is ranked among the best universities in the world."}`
+        fireEvent.change(nameField, { target: { value: 'UC Santa Barbara' } });
+        fireEvent.change(rankField, { target: { value: '31' } });
+        fireEvent.change(descriptionField, { target: { value: 'It\'s a university probably.' } });
 
-        expect(message).toMatch(expectedMessage);
-        restoreConsole();
+        expect(submitButton).toBeInTheDocument();
 
+        fireEvent.click(submitButton);
+
+
+        await waitFor(() => expect(axiosMock.history.post.length).toBe(1));
+
+        expect(axiosMock.history.post[0].params).toEqual(
+            {
+                "name": "UC Santa Barbara",
+                "rank": "31",      
+                "description":"It's a university probably."
+            });
+
+        expect(mockToast).toBeCalledWith("New school Created - id: 17 name: UCSB");
+        expect(mockNavigate).toBeCalledWith({ "to": "/schools/list" });
     });
+
 
 });
 
