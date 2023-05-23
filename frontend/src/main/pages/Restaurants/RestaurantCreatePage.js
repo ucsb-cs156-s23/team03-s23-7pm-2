@@ -6,8 +6,6 @@ import { toast } from "react-toastify";
 
 export default function RestaurantCreatePage() {
 
-  let navigate = useNavigate(); 
-
   const objectToAxiosParams = (restaurant) => ({
     url: "/api/restaurants/post",
     method: "POST",

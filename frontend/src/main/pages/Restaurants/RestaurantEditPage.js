@@ -8,24 +8,24 @@ import { toast } from "react-toastify";
 export default function RestaurantsEditPage() {
     let { id } = useParams();
 
-    const { data: restauant, error, status } =
+    const { data: restaurant, error, status } =
         useBackend(
             // Stryker disable next-line all : don't test internal caching of React Query
-            [`/api/restauants?id=${id}`],
+            [`/api/restaurants?id=${id}`],
             {  // Stryker disable next-line all : GET is the default, so changing this to "" doesn't introduce a bug
                 method: "GET",
-                url: `/api/restauants`,
+                url: `/api/restaurants`,
                 params: {
                     id
                 }
             }
         );
 
-    const objectToAxiosPutParams = (restauant) => ({
-        url: "/api/restauants",
+    const objectToAxiosPutParams = (restaurant) => ({
+        url: "/api/restaurants",
         method: "PUT",
         params: {
-            id: restauant.id,
+            id: restaurant.id,
         },
         data: {
             name: restaurant.name,
@@ -37,15 +37,15 @@ export default function RestaurantsEditPage() {
         }
     });
 
-    const onSuccess = (restauant) => {
-        toast(`Restaurant Updated - id: ${restauant.id} name: ${restauant.name}`);
+    const onSuccess = (restaurant) => {
+        toast(`Restaurant Updated - id: ${restaurant.id} name: ${restaurant.name}`);
     }
 
     const mutation = useBackendMutation(
         objectToAxiosPutParams,
         { onSuccess },
         // Stryker disable next-line all : hard to set up test for caching
-        [`/api/restauants?id=${id}`]
+        [`/api/restaurants?id=${id}`]
     );
 
     const { isSuccess } = mutation
@@ -55,15 +55,15 @@ export default function RestaurantsEditPage() {
     }
 
     if (isSuccess) {
-        return <Navigate to="/restauants/list" />
+        return <Navigate to="/restaurants/list" />
     }
 
     return (
         <BasicLayout>
             <div className="pt-2">
                 <h1>Edit Restaurant</h1>
-                {restauant &&
-                    <RestaurantForm initialRestaurant={restauant} submitAction={onSubmit} buttonLabel="Update" />
+                {restaurant &&
+                    <RestaurantForm initialRestaurant={restaurant} submitAction={onSubmit} buttonLabel="Update" />
                 }
             </div>
         </BasicLayout>
