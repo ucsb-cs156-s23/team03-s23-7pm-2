@@ -23,4 +23,4 @@ repo_name: "TBD"
 repo: ucsb-cs156-s23/team03-s23-7pm-2
 owner: ucsb-cs156-s23
 repo_name: team03-s23-7pm-2
-pull_requests: [{"author":{"id":"U_kgDOBtJaVA","is_bot":false,"login":"NateHoang","name":"Nathan Hoang"},"headRefName":"nh-frontbackRest","number":31,"title":"Nh frontback rest","url":"https://github.com/ucsb-cs156-s23/team03-s23-7pm-2/pull/31"},{"author":{"id":"U_kgDOBbLB7w","is_bot":false,"login":"maya-maye","name":""},"headRefName":"mm-schoolJavaBackend","number":29,"title":"mm-convertSchoolJavaBackend","url":"https://github.com/ucsb-cs156-s23/team03-s23-7pm-2/pull/29"},{"author":{"id":"MDQ6VXNlcjgzNTc5MTY=","is_bot":false,"login":"Arik","name":""},"headRefName":"restaurantFrontendUsesBackend","number":28,"title":"Restaurant frontend uses backend","url":"https://github.com/ucsb-cs156-s23/team03-s23-7pm-2/pull/28"}]
+pull_requests: [{"author":{"id":"U_kgDOBbLB7w","is_bot":false,"login":"maya-maye","name":""},"headRefName":"mm-schoolJavaBackend","number":29,"title":"mm-convertSchoolJavaBackend","url":"https://github.com/ucsb-cs156-s23/team03-s23-7pm-2/pull/29"}]
