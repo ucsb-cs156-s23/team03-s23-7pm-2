@@ -56,10 +56,6 @@ describe("RestaurantsCreatePage tests", () => {
         const restaurant = {
             id: 17,
             name: "The Habit",
-            address: "888 Embarcadero del Norte",
-            city: "Isla Vista",
-            state: "CA",
-            zip: "93117",
             description: "Burgers and Fries"
         };
 
@@ -78,18 +74,10 @@ describe("RestaurantsCreatePage tests", () => {
         });
 
         const nameField = getByTestId("RestaurantForm-name");
-        const addressField = getByTestId("RestaurantForm-address");
-        const cityField = getByTestId("RestaurantForm-city");
-        const stateField = getByTestId("RestaurantForm-state");
-        const zipField = getByTestId("RestaurantForm-zip");
         const descriptionField = getByTestId("RestaurantForm-description");
         const submitButton = getByTestId("RestaurantForm-submit");
 
         fireEvent.change(nameField, { target: { value: 'The Habit' } });
-        fireEvent.change(addressField, { target: { value: '888 Embarcadero del Norte' } });
-        fireEvent.change(cityField, { target: { value: 'Isla Vista' } });
-        fireEvent.change(stateField, { target: { value: 'CA' } });
-        fireEvent.change(zipField, { target: { value: '93117' } });
         fireEvent.change(descriptionField, { target: { value: 'Burgers and Fries' } });
 
         expect(submitButton).toBeInTheDocument();
@@ -102,10 +90,6 @@ describe("RestaurantsCreatePage tests", () => {
         expect(axiosMock.history.post[0].params).toEqual(
             {
                 name: "The Habit",
-                address: "888 Embarcadero del Norte",
-                city: "Isla Vista",
-                state: "CA",
-                zip: "93117",
                 description: "Burgers and Fries"
             });
 

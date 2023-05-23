@@ -40,40 +40,40 @@ public class RestaurantControllerTests extends ControllerTestCase {
         @MockBean
         UserRepository userRepository;
 
-        // Authorization tests for /api/Restaurant/admin/all
+        // Authorization tests for /api/restaurants/admin/all
 
         @Test
         public void logged_out_users_cannot_get_all() throws Exception {
-                mockMvc.perform(get("/api/Restaurant/all"))
+                mockMvc.perform(get("/api/restaurants/all"))
                                 .andExpect(status().is(403)); // logged out users can't get all
         }
 
         @WithMockUser(roles = { "USER" })
         @Test
         public void logged_in_users_can_get_all() throws Exception {
-                mockMvc.perform(get("/api/Restaurant/all"))
+                mockMvc.perform(get("/api/restaurants/all"))
                                 .andExpect(status().is(200)); // logged
         }
 
         @Test
         public void logged_out_users_cannot_get_by_id() throws Exception {
-                mockMvc.perform(get("/api/Restaurant?id=3"))
+                mockMvc.perform(get("/api/restaurants?id=3"))
                                 .andExpect(status().is(403)); // logged out users can't get by id
         }
 
-        // Authorization tests for /api/Restaurant/post
+        // Authorization tests for /api/restaurants/post
         // (Perhaps should also have these for put and delete)
 
         @Test
         public void logged_out_users_cannot_post() throws Exception {
-                mockMvc.perform(post("/api/Restaurant/post"))
+                mockMvc.perform(post("/api/restaurants/post"))
                                 .andExpect(status().is(403));
         }
 
         @WithMockUser(roles = { "USER" })
         @Test
         public void logged_in_regular_users_cannot_post() throws Exception {
-                mockMvc.perform(post("/api/Restaurant/post"))
+                mockMvc.perform(post("/api/restaurants/post"))
                                 .andExpect(status().is(403)); // only admins can post
         }
 
@@ -94,7 +94,7 @@ public class RestaurantControllerTests extends ControllerTestCase {
                 when(RestaurantRepository.findById(eq(3L))).thenReturn(Optional.of(restaurant));
 
                 // act
-                MvcResult response = mockMvc.perform(get("/api/Restaurant?id=3"))
+                MvcResult response = mockMvc.perform(get("/api/restaurants?id=3"))
                                 .andExpect(status().isOk()).andReturn();
 
                 // assert
@@ -114,7 +114,7 @@ public class RestaurantControllerTests extends ControllerTestCase {
                 when(RestaurantRepository.findById(eq(4L))).thenReturn(Optional.empty());
 
                 // act
-                MvcResult response = mockMvc.perform(get("/api/Restaurant?id=4"))
+                MvcResult response = mockMvc.perform(get("/api/restaurants?id=4"))
                                 .andExpect(status().isNotFound()).andReturn();
 
                 // assert
@@ -149,7 +149,7 @@ public class RestaurantControllerTests extends ControllerTestCase {
                 when(RestaurantRepository.findAll()).thenReturn(expectedrestaurant);
 
                 // act
-                MvcResult response = mockMvc.perform(get("/api/Restaurant/all"))
+                MvcResult response = mockMvc.perform(get("/api/restaurants/all"))
                                 .andExpect(status().isOk()).andReturn();
 
                 // assert
@@ -174,7 +174,7 @@ public class RestaurantControllerTests extends ControllerTestCase {
 
                 // act
                 MvcResult response = mockMvc.perform(
-                                post("/api/Restaurant/post?name=Ortega&description=The okay")
+                                post("/api/restaurants/post?name=Ortega&description=The okay")
                                                 .with(csrf()))
                                 .andExpect(status().isOk()).andReturn();
 
@@ -200,7 +200,7 @@ public class RestaurantControllerTests extends ControllerTestCase {
 
                 // act
                 MvcResult response = mockMvc.perform(
-                                delete("/api/Restaurant?id=7")
+                                delete("/api/restaurants?id=7")
                                                 .with(csrf()))
                                 .andExpect(status().isOk()).andReturn();
 
@@ -222,7 +222,7 @@ public class RestaurantControllerTests extends ControllerTestCase {
 
                 // act
                 MvcResult response = mockMvc.perform(
-                                delete("/api/Restaurant?id=1000")
+                                delete("/api/restaurants?id=1000")
                                                 .with(csrf()))
                                 .andExpect(status().isNotFound()).andReturn();
 
@@ -253,7 +253,7 @@ public class RestaurantControllerTests extends ControllerTestCase {
 
                 // act
                 MvcResult response = mockMvc.perform(
-                                put("/api/Restaurant?id=3")
+                                put("/api/restaurants?id=3")
                                                 .contentType(MediaType.APPLICATION_JSON)
                                                 .characterEncoding("utf-8")
                                                 .content(requestBody)
@@ -283,7 +283,7 @@ public class RestaurantControllerTests extends ControllerTestCase {
 
                 // act
                 MvcResult response = mockMvc.perform(
-                                put("/api/Restaurant?id=8")
+                                put("/api/restaurants?id=8")
                                                 .contentType(MediaType.APPLICATION_JSON)
                                                 .characterEncoding("utf-8")
                                                 .content(requestBody)

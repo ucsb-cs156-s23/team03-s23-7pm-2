@@ -23,7 +23,7 @@ import javax.validation.Valid;
 
 
 @Api(description = "Restaurant")
-@RequestMapping("/api/Restaurant")
+@RequestMapping("/api/restaurants")
 @RestController
 @Slf4j
 public class RestaurantController extends ApiController {

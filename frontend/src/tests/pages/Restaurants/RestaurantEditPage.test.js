@@ -77,19 +77,11 @@ describe("RestaurantsEditPage tests", () => {
             axiosMock.onGet("/api/restaurants", { params: { id: 17 } }).reply(200, {
                 id: 17,
                 name: "The Habit",
-                address: "888 Embarcadero del Norte",
-                city: "Isla Vista",
-                state: "CA",
-                zip: "93117",
                 description: "Burgers and Fries"
             });
             axiosMock.onPut('/api/restaurants').reply(200, {
                 id: "17",
                 "name": "Freebirds",
-                "address": "879 Embarcadero del Norte",
-                "city": "Isla Vista",
-                "state": "CA",
-                "zip": "93117",
                 "description": "Burrito joint, and iconic Isla Vista location"
             });
         });
@@ -119,19 +111,11 @@ describe("RestaurantsEditPage tests", () => {
 
             const idField = getByTestId("RestaurantForm-id");
             const nameField = getByTestId("RestaurantForm-name");
-            const addressField = getByTestId("RestaurantForm-address");
-            const cityField = getByTestId("RestaurantForm-city");
-            const stateField = getByTestId("RestaurantForm-state");
-            const zipField = getByTestId("RestaurantForm-zip");
             const descriptionField = getByTestId("RestaurantForm-description");
             const submitButton = getByTestId("RestaurantForm-submit");
 
             expect(idField).toHaveValue("17");
             expect(nameField).toHaveValue("The Habit");
-            expect(addressField).toHaveValue("888 Embarcadero del Norte");
-            expect(cityField).toHaveValue("Isla Vista");
-            expect(stateField).toHaveValue("CA");
-            expect(zipField).toHaveValue("93117");
             expect(descriptionField).toHaveValue("Burgers and Fries");
         });
 
@@ -149,28 +133,16 @@ describe("RestaurantsEditPage tests", () => {
 
             const idField = getByTestId("RestaurantForm-id");
             const nameField = getByTestId("RestaurantForm-name");
-            const addressField = getByTestId("RestaurantForm-address");
-            const cityField = getByTestId("RestaurantForm-city");
-            const stateField = getByTestId("RestaurantForm-state");
-            const zipField = getByTestId("RestaurantForm-zip");
             const descriptionField = getByTestId("RestaurantForm-description");
             const submitButton = getByTestId("RestaurantForm-submit");
 
             expect(idField).toHaveValue("17");
             expect(nameField).toHaveValue("The Habit");
-            expect(addressField).toHaveValue("888 Embarcadero del Norte");
-            expect(cityField).toHaveValue("Isla Vista");
-            expect(stateField).toHaveValue("CA");
-            expect(zipField).toHaveValue("93117");
             expect(descriptionField).toHaveValue("Burgers and Fries");
 
             expect(submitButton).toBeInTheDocument();
 
             fireEvent.change(nameField, { target: { value: 'Freebirds' } });
-            fireEvent.change(addressField, { target: { value: '879 Embarcadero del Norte' } });
-            fireEvent.change(cityField, { target: { value: 'Isla Vista' } });
-            fireEvent.change(stateField, { target: { value: 'CA' } });
-            fireEvent.change(zipField, { target: { value: '93117' } });
             fireEvent.change(descriptionField, { target: { value: 'Burrito joint, and iconic Isla Vista location' } });
 
             fireEvent.click(submitButton);
@@ -184,10 +156,6 @@ describe("RestaurantsEditPage tests", () => {
             expect(axiosMock.history.put[0].params).toEqual({ id: 17 });
             expect(axiosMock.history.put[0].data).toBe(JSON.stringify({
                 name: "Freebirds",
-                address: "879 Embarcadero del Norte",
-                city: "Isla Vista",
-                state: "CA",
-                zip: "93117",
                 description: "Burrito joint, and iconic Isla Vista location"
             })); // posted object
 
