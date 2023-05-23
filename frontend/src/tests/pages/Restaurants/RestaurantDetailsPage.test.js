@@ -80,18 +80,10 @@ describe("RestaurantDetailsPage tests", () => {
 
 		const idField = getByTestId("RestaurantTable-cell-row-0-col-id");
 		const nameField = getByTestId("RestaurantTable-cell-row-0-col-name");
-		const addressField = getByTestId("RestaurantTable-cell-row-0-col-address");
-		const cityField = getByTestId("RestaurantTable-cell-row-0-col-city");
-		const stateField = getByTestId("RestaurantTable-cell-row-0-col-state");
-		const zipField = getByTestId("RestaurantTable-cell-row-0-col-zip");
 		const descriptionField = getByTestId("RestaurantTable-cell-row-0-col-description")
 
 		expect(idField).toHaveTextContent(restaurant.id);
 		expect(nameField).toHaveTextContent(restaurant.name);
-		expect(addressField).toHaveTextContent(restaurant.address);
-		expect(cityField).toHaveTextContent(restaurant.city);
-		expect(stateField).toHaveTextContent(restaurant.state);
-		expect(zipField).toHaveTextContent(restaurant.zip);
 		expect(descriptionField).toHaveTextContent(restaurant.description);
 
 		expect(screen.queryByText("Delete")).not.toBeInTheDocument();

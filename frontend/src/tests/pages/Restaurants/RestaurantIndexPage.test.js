@@ -137,36 +137,36 @@ describe("RestaurantsIndexPage tests", () => {
 		expect(queryByTestId(`${testId}-cell-row-0-col-id`)).not.toBeInTheDocument();
 	});
 
-	// test("what happens when you click delete, admin", async () => {
-	// 	setupAdminUser();
+	test("what happens when you click delete, admin", async () => {
+		setupAdminUser();
 
-	// 	const queryClient = new QueryClient();
-	// 	axiosMock.onGet("/api/restaurants/all").reply(200, restaurantFixtures.threeRestaurants);
-	// 	axiosMock.onDelete("/api/restaurants").reply(200, "Restaurant with id 2 was deleted");
-
-
-	// 	const { getByTestId } = render(
-	// 		<QueryClientProvider client={queryClient}>
-	// 			<MemoryRouter>
-	// 				<RestaurantsIndexPage />
-	// 			</MemoryRouter>
-	// 		</QueryClientProvider>
-	// 	);
+		const queryClient = new QueryClient();
+		axiosMock.onGet("/api/restaurants/all").reply(200, restaurantFixtures.threeRestaurants);
+		axiosMock.onDelete("/api/restaurants").reply(200, "Restaurant with id 2 was deleted");
 
 
-	// 	await waitFor(() => { expect(getByTestId(`${testId}-cell-row-0-col-id`)).toBeInTheDocument(); });
+		const { getByTestId } = render(
+			<QueryClientProvider client={queryClient}>
+				<MemoryRouter>
+					<RestaurantsIndexPage />
+				</MemoryRouter>
+			</QueryClientProvider>
+		);
 
-	// 	expect(getByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent("2");
+
+		await waitFor(() => { expect(getByTestId(`${testId}-cell-row-0-col-id`)).toBeInTheDocument(); });
+
+		expect(getByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent("2");
 
 
-	// 	const deleteButton = getByTestId(`${testId}-cell-row-0-col-Delete-button`);
-	// 	expect(deleteButton).toBeInTheDocument();
+		const deleteButton = getByTestId(`${testId}-cell-row-0-col-Delete-button`);
+		expect(deleteButton).toBeInTheDocument();
 
-	// 	fireEvent.click(deleteButton);
+		fireEvent.click(deleteButton);
 
-	// 	await waitFor(() => { expect(mockToast).toBeCalledWith("Restaurant with id 2 was deleted") });
+		await waitFor(() => { expect(mockToast).toBeCalledWith("Restaurant with id 2 was deleted") });
 
-	// });
+	});
 
 });
 
