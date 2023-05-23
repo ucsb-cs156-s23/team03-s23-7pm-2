@@ -42,7 +42,7 @@ public class SchoolControllerTests extends ControllerTestCase {
         @MockBean
         UserRepository userRepository;
 
-        // Authorization tests for /api/Restaurant/admin/all
+        // Authorization tests for /api/restaurants/admin/all
 
         @Test
         public void logged_out_users_cannot_get_all() throws Exception {
