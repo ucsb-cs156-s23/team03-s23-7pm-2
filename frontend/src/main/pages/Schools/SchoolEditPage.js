@@ -58,7 +58,7 @@ export default function SchoolsEditPage() {
     return (
         <BasicLayout>
             <div className="pt-2">
-                <h1>Edit school</h1>
+                <h1>Edit School</h1>
                 {school &&
                     <SchoolForm initialSchool={school} submitAction={onSubmit} buttonLabel="Update" />
                 }

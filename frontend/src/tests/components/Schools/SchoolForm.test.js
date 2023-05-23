@@ -19,7 +19,7 @@ describe("SchoolForm tests", () => {
     const expectedHeaders = ["Name","Rank"];
     const testId = "SchoolForm";
 
-    test("renders correctly with no initialContents", async () => {
+    test("renders correctly with no initialSchool", async () => {
         render(
             <QueryClientProvider client={queryClient}>
                 <Router>
@@ -37,11 +37,11 @@ describe("SchoolForm tests", () => {
 
     });
 
-    test("renders correctly when passing in initialContents", async () => {
+    test("renders correctly when passing in initialSchool", async () => {
         render(
             <QueryClientProvider client={queryClient}>
                 <Router>
-                    <SchoolForm initialContents={schoolFixtures.oneSchool} />
+                    <SchoolForm initialSchool={schoolFixtures.oneSchool} />
                 </Router>
             </QueryClientProvider>
         );
