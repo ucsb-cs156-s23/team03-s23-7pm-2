@@ -84,13 +84,13 @@ describe("RestaurantsEditPage tests", () => {
                 description: "Burgers and Fries"
             });
             axiosMock.onPut('/api/restaurants').reply(200, {
-                id: "17",
-                "name": "Freebirds",
-                "address": "879 Embarcadero del Norte",
-                "city": "Isla Vista",
-                "state": "CA",
-                "zip": "93117",
-                "description": "Burrito joint, and iconic Isla Vista location"
+                id: 17,
+                name: "Freebirds",
+                address: "879 Embarcadero del Norte",
+                city: "Los Vegas",
+                state: "NV",
+                zip: "88901",
+                description: "Burrito joint, and iconic Isla Vista location"
             });
         });
 
@@ -168,9 +168,9 @@ describe("RestaurantsEditPage tests", () => {
 
             fireEvent.change(nameField, { target: { value: 'Freebirds' } });
             fireEvent.change(addressField, { target: { value: '879 Embarcadero del Norte' } });
-            fireEvent.change(cityField, { target: { value: 'Isla Vista' } });
-            fireEvent.change(stateField, { target: { value: 'CA' } });
-            fireEvent.change(zipField, { target: { value: '93117' } });
+            fireEvent.change(cityField, { target: { value: 'Los Vegas' } });
+            fireEvent.change(stateField, { target: { value: 'NV' } });
+            fireEvent.change(zipField, { target: { value: '88901' } });
             fireEvent.change(descriptionField, { target: { value: 'Burrito joint, and iconic Isla Vista location' } });
 
             fireEvent.click(submitButton);
@@ -185,9 +185,9 @@ describe("RestaurantsEditPage tests", () => {
             expect(axiosMock.history.put[0].data).toBe(JSON.stringify({
                 name: "Freebirds",
                 address: "879 Embarcadero del Norte",
-                city: "Isla Vista",
-                state: "CA",
-                zip: "93117",
+                city: "Los Vegas",
+                state: "NV",
+                zip: "88901",
                 description: "Burrito joint, and iconic Isla Vista location"
             })); // posted object
 
