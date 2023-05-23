@@ -29,8 +29,7 @@ export default function SchoolsEditPage() {
         },
         data: {
             name: school.name,
-            cpu: school.cpu,
-            gpu: school.gpu,
+            rank: school.rank,
             description: school.description
         }
     });

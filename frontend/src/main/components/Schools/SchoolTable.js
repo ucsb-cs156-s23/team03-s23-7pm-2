@@ -1,9 +1,7 @@
 import React from "react";
 import OurTable, { ButtonColumn } from "main/components/OurTable";
 import { useNavigate } from "react-router-dom";
-import { schoolUtils } from "main/utils/schoolUtils";
 import { useBackendMutation } from "main/utils/useBackend";
-const showCell = (cell) => JSON.stringify(cell.row.values);
 import { cellToAxiosParamsDelete, onDeleteSuccess } from "main/utils/schoolUtils";
 import { hasRole } from "main/utils/currentUser";
 

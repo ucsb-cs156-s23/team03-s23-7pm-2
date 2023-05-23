@@ -10,8 +10,7 @@ export default function SchoolCreatePage() {
     method: "POST",
     params: {
       name: school.name,
-      cpu: school.cpu,
-      gpu: school.gpu,
+      rank: school.rank,
       description: school.description
     }
   });
