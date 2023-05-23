@@ -11,10 +11,6 @@ export default function RestaurantsCreatePage() {
     method: "POST",
     params: {
       name: restaurant.name,
-      address: restaurant.address,
-      city: restaurant.city,
-      state: restaurant.state,
-      zip: restaurant.zip,
       description: restaurant.description
     }
   });

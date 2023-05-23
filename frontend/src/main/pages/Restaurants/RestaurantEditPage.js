@@ -29,10 +29,6 @@ export default function RestaurantsEditPage() {
         },
         data: {
             name: restaurant.name,
-            address: restaurant.address,
-            city: restaurant.city,
-            state: restaurant.state,
-            zip: restaurant.zip,
             description: restaurant.description
         }
     });
