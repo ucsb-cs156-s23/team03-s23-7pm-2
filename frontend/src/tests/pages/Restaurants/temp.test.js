@@ -121,9 +121,9 @@ describe("RestaurantsEditPage tests", () => {
             const nameField = getByTestId("RestaurantForm-name");
             const addressField = getByTestId("RestaurantForm-address");
             const cityField = getByTestId("RestaurantForm-city");
-            const stateField = getByTestId("RestaurantForm-state")
-            const zipField = getByTestId("RestaurantForm-zip")
-            const descriptionField = getByTestId("RestaurantForm-description")
+            const stateField = getByTestId("RestaurantForm-state");
+            const zipField = getByTestId("RestaurantForm-zip");
+            const descriptionField = getByTestId("RestaurantForm-description");
             const submitButton = getByTestId("RestaurantForm-submit");
 
             expect(idField).toHaveValue("17");
@@ -151,9 +151,9 @@ describe("RestaurantsEditPage tests", () => {
             const nameField = getByTestId("RestaurantForm-name");
             const addressField = getByTestId("RestaurantForm-address");
             const cityField = getByTestId("RestaurantForm-city");
-            const stateField = getByTestId("RestaurantForm-state")
-            const zipField = getByTestId("RestaurantForm-zip")
-            const descriptionField = getByTestId("RestaurantForm-description")
+            const stateField = getByTestId("RestaurantForm-state");
+            const zipField = getByTestId("RestaurantForm-zip");
+            const descriptionField = getByTestId("RestaurantForm-description");
             const submitButton = getByTestId("RestaurantForm-submit");
 
             expect(idField).toHaveValue("17");
@@ -166,12 +166,12 @@ describe("RestaurantsEditPage tests", () => {
 
             expect(submitButton).toBeInTheDocument();
 
-            fireEvent.change(nameField, { target: { value: 'Freebirds' } })
-            fireEvent.change(addressField, { target: { value: '879 Embarcadero del Norte' } })
-            fireEvent.change(cityField, { target: { value: 'Las Vegas' } })
-            fireEvent.change(stateField, { target: { value: 'NV' } })
-            fireEvent.change(zipField, { target: { value: '88901' } })
-            fireEvent.change(descriptionField, { target: { value: 'Burrito joint, and iconic Isla Vista location' } })
+            fireEvent.change(nameField, { target: { value: 'Freebirds' } });
+            fireEvent.change(addressField, { target: { value: '879 Embarcadero del Norte' } });
+            fireEvent.change(cityField, { target: { value: 'Los Vegas' } });
+            fireEvent.change(stateField, { target: { value: 'NV' } });
+            fireEvent.change(zipField, { target: { value: '88901' } });
+            fireEvent.change(descriptionField, { target: { value: 'Burrito joint, and iconic Isla Vista location' } });
 
             fireEvent.click(submitButton);
 
@@ -183,10 +183,9 @@ describe("RestaurantsEditPage tests", () => {
             expect(axiosMock.history.put.length).toBe(1); // times called
             expect(axiosMock.history.put[0].params).toEqual({ id: 17 });
             expect(axiosMock.history.put[0].data).toBe(JSON.stringify({
-                id: 17,
                 name: "Freebirds",
                 address: "879 Embarcadero del Norte",
-                city: "Las Vegas",
+                city: "Los Vegas",
                 state: "NV",
                 zip: "88901",
                 description: "Burrito joint, and iconic Isla Vista location"
