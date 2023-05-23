@@ -21,6 +21,10 @@ import LaptopEditPage from "main/pages/Laptops/LaptopEditPage";
 import LaptopDetailsPage from "main/pages/Laptops/LaptopDetailsPage";
 import LaptopCreatePage from "main/pages/Laptops/LaptopCreatePage";
 
+import RestaurantIndexPage from "main/pages/Restaurants/RestaurantIndexPage";
+import RestaurantEditPage from "main/pages/Restaurants/RestaurantEditPage";
+import RestaurantDetailsPage from "main/pages/Restaurants/RestaurantDetailsPage";
+import RestaurantCreatePage from "main/pages/Restaurants/RestaurantCreatePage";
 
 import { hasRole, useCurrentUser } from "main/utils/currentUser";
 
@@ -81,6 +85,40 @@ function App() {
             </>
           )
         }
+        {
+          hasRole(currentUser, "ROLE_USER") && (
+            <>
+              <Route exact path="/restaurants/list" element={<RestaurantIndexPage />} />
+            </>
+          )
+        }
+        {
+          hasRole(currentUser, "ROLE_ADMIN") && (
+            <>
+              <Route exact path="/restaurants/edit/:id" element={<RestaurantEditPage />} />
+              <Route exact path="/restaurants/details/:id" element={<RestaurantDetailsPage />} />
+              <Route exact path="/restaurants/create" element={<RestaurantCreatePage />} />
+            </>
+          )
+        }
+
+        {
+          hasRole(currentUser, "ROLE_USER") && (
+            <>
+              <Route exact path="/schools/list" element={<SchoolIndexPage />} />
+            </>
+          )
+        }
+        {
+          hasRole(currentUser, "ROLE_ADMIN") && (
+            <>
+              <Route exact path="/schools/edit/:id" element={<SchoolEditPage />} />
+              <Route exact path="/schools/details/:id" element={<SchoolDetailsPage />} />
+              <Route exact path="/schools/create" element={<SchoolCreatePage />} />
+            </>
+          )
+        }
+
         {
           hasRole(currentUser, "ROLE_USER") && (
             <>
